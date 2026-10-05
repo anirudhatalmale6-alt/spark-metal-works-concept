@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spark Metal Works Ltd. — Mobile Welding &amp; Metal Repair | Alberta</title>
+<style>
+  :root{
+    --ink:#11161c;
+    --steel:#1b2129;
+    --steel-2:#232b35;
+    --line:#e3e6ea;
+    --muted:#5c6773;
+    --paper:#ffffff;
+    --paper-2:#f5f6f8;
+    --spark:#ff6a13;
+    --spark-dark:#d2500a;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Lato","Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+    font-size:17px;
+    line-height:1.65;
+  }
+  h1,h2,h3,h4,.display{font-family:"Poppins","Lato",Arial,sans-serif;font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:0}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-family:"Poppins",Arial,sans-serif;font-size:12px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--spark);margin:0 0 14px
+  }
+  .eyebrow.on-dark{color:#ff8a42}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:"Poppins",Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;
+    text-decoration:none;padding:15px 26px;border-radius:3px;transition:.18s ease;
+  }
+  .btn-primary{background:var(--spark);color:#fff;box-shadow:0 6px 18px rgba(255,106,19,.28)}
+  .btn-primary:hover{background:var(--spark-dark)}
+  .btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.35)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-dark{background:var(--ink);color:#fff}
+
+  /* ---------- top bar ---------- */
+  .topbar{background:var(--ink);color:#aeb8c4;font-size:13.5px}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:42px}
+  .topbar strong{color:#fff;font-weight:700}
+  .topbar .pill{color:#ffb98a}
+
+  header.nav{
+    position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line)
+  }
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--ink)}
+  .mark{
+    width:42px;height:42px;border-radius:4px;background:var(--ink);
+    display:grid;place-items:center;flex:0 0 42px
+  }
+  .brand .nm{font-family:"Poppins",Arial,sans-serif;font-weight:600;font-size:18px;letter-spacing:-.01em;line-height:1.1}
+  .brand .sub{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  nav ul{display:flex;gap:34px;list-style:none;margin:0;padding:0}
+  nav a{
+    text-decoration:none;color:var(--ink);font-family:"Poppins",Arial,sans-serif;
+    font-size:14.5px;font-weight:500;padding:6px 0;border-bottom:2px solid transparent
+  }
+  nav a.active,nav a:hover{border-bottom-color:var(--spark)}
+  .burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:3px;place-items:center;background:#fff}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;background:var(--steel);color:#fff;overflow:hidden;padding:0}
+  .hero .photo{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(900px 520px at 72% 42%, rgba(255,138,66,.40), transparent 62%),
+      radial-gradient(260px 200px at 72% 42%, rgba(255,226,180,.55), transparent 70%),
+      linear-gradient(115deg,#141a21 0%,#1d242d 46%,#2b333d 100%);
+  }
+  .hero .photo:after{
+    content:"";position:absolute;inset:0;opacity:.5;
+    background-image:
+      repeating-linear-gradient(104deg, rgba(255,255,255,.035) 0 2px, transparent 2px 7px),
+      repeating-linear-gradient(0deg, rgba(0,0,0,.14) 0 1px, transparent 1px 4px);
+  }
+  .hero .scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(90deg, rgba(11,15,19,.94) 0%, rgba(11,15,19,.80) 42%, rgba(11,15,19,.18) 100%)
+  }
+  .hero .wrap{position:relative;padding:104px 28px 70px;max-width:var(--maxw)}
+  .hero h1{font-size:clamp(38px,5.1vw,62px);max-width:17ch}
+  .hero h1 em{font-style:normal;color:#ff8a42}
+  .hero p.lede{font-size:19.5px;color:#ccd5de;max-width:52ch;margin:22px 0 34px}
+  .hero .cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .paths{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;align-items:stretch;margin-top:4px;max-width:720px}
+  .path{display:flex;flex-direction:column;padding:20px 24px 18px;border-radius:5px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12)}
+  .path .btn{justify-content:center}
+  .path .pnote{margin-top:auto;padding-top:13px}
+  .path.urgent{background:rgba(255,106,19,.10);border-color:rgba(255,138,66,.38)}
+  .plabel{font-family:"Poppins",Arial,sans-serif;font-size:13.5px;font-weight:600;color:#fff;margin:0 0 13px;letter-spacing:-.01em}
+  .pnote{font-size:13.5px;color:#9fabb8;margin:13px 0 0;line-height:1.5}
+  .btn.tel{font-size:17px;padding:14px 22px;letter-spacing:0}
+  .telnum{color:#fff}
+  .telnote{
+    font-family:"Poppins",Arial,sans-serif;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:rgba(255,255,255,.45);border:1px dashed rgba(255,255,255,.28);padding:2px 6px;border-radius:2px;margin-left:5px
+  }
+  .hero .trust{display:grid;grid-template-columns:repeat(4,auto);gap:34px;justify-content:start;margin-top:46px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+  .trust .it{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:#c3ccd6;max-width:185px}
+  .trust svg{flex:0 0 18px;margin-top:3px}
+
+  .photonote{
+    position:absolute;right:20px;bottom:18px;z-index:3;
+    font-family:"Poppins",Arial,sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:rgba(255,255,255,.52);border:1px dashed rgba(255,255,255,.3);padding:5px 10px;border-radius:3px
+  }
+
+  /* ---------- strip ---------- */
+  .strip{background:var(--ink);color:#8e99a6;padding:22px 0}
+  .strip .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+  .strip .n{font-family:"Poppins",Arial,sans-serif;color:#fff;font-weight:600;font-size:26px;line-height:1}
+  .strip .l{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;margin-top:5px}
+
+  /* ---------- sections ---------- */
+  section{padding:92px 0}
+  .sec-head{max-width:640px;margin-bottom:48px}
+  .sec-head h2{font-size:clamp(28px,3.4vw,40px)}
+  .sec-head p{color:var(--muted);font-size:18px;margin:16px 0 0}
+
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{
+    border:1px solid var(--line);border-radius:5px;padding:32px 28px 30px;background:#fff;
+    transition:.18s ease;position:relative
+  }
+  .card:hover{border-color:#cdd3da;box-shadow:0 14px 34px rgba(17,22,28,.07);transform:translateY(-2px)}
+  .card .ic{width:46px;height:46px;border-radius:4px;background:#fff3ec;display:grid;place-items:center;margin-bottom:20px}
+  .route{
+    position:absolute;top:22px;right:22px;font-family:"Poppins",Arial,sans-serif;font-size:10.5px;
+    font-weight:600;letter-spacing:.11em;text-transform:uppercase;padding:5px 10px;border-radius:2px
+  }
+  .route-call{background:#fff1e8;color:#c24c08}
+  .route-book{background:#eef1f5;color:#4a5765}
+  .card h3{font-size:20px;margin-bottom:10px}
+  .card p{color:var(--muted);font-size:15.5px;margin:0}
+  .card ul{margin:16px 0 0;padding-left:18px;color:var(--muted);font-size:15px}
+  .card ul li{margin-bottom:5px}
+  .card .more{
+    display:inline-block;margin-top:20px;font-family:"Poppins",Arial,sans-serif;font-size:13.5px;
+    font-weight:600;color:var(--spark);text-decoration:none;letter-spacing:.02em
+  }
+
+  /* ---------- how it works ---------- */
+  .alt{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:s}
+  .step{position:relative;padding-top:30px}
+  .step:before{
+    counter-increment:s;content:counter(s,decimal-leading-zero);
+    font-family:"Poppins",Arial,sans-serif;font-weight:600;font-size:13px;color:var(--spark);
+    letter-spacing:.1em;position:absolute;top:0;left:0
+  }
+  .step:after{content:"";position:absolute;top:8px;left:34px;right:-22px;height:1px;background:#d7dce2}
+  .step:last-child:after{display:none}
+  .step h4{font-size:17.5px;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:15px;margin:0}
+
+  /* ---------- gallery ---------- */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+  .filters button{
+    font-family:"Poppins",Arial,sans-serif;font-size:13.5px;font-weight:500;cursor:pointer;
+    padding:10px 18px;border-radius:3px;border:1px solid var(--line);background:#fff;color:var(--muted)
+  }
+  .filters button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .shot{
+    position:relative;aspect-ratio:4/3;border-radius:4px;overflow:hidden;
+    border:1px solid #d9dee4;display:grid;place-items:center;text-align:center
+  }
+  .shot .ph{
+    font-family:"Poppins",Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:rgba(255,255,255,.72);padding:0 18px
+  }
+  .shot .tag{
+    position:absolute;left:12px;bottom:12px;background:rgba(10,14,18,.78);color:#fff;
+    font-family:"Poppins",Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:.08em;
+    text-transform:uppercase;padding:5px 10px;border-radius:2px
+  }
+  .g1{background:linear-gradient(135deg,#212a33,#39434f)}
+  .g2{background:linear-gradient(135deg,#2b3038,#4a4038)}
+  .g3{background:linear-gradient(135deg,#1e2a2e,#33474b)}
+  .g4{background:linear-gradient(135deg,#312a26,#56463a)}
+  .g5{background:linear-gradient(135deg,#232834,#3b4254)}
+  .g6{background:linear-gradient(135deg,#2a2a2e,#45454c)}
+
+  /* ---------- booking ---------- */
+  .book{background:var(--steel);color:#fff}
+  .book .cols{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:start}
+  .book h2{font-size:clamp(28px,3.4vw,40px)}
+  .book p.lede{color:#c3ccd6;font-size:18px;margin:18px 0 30px}
+  .book .list{list-style:none;padding:0;margin:0}
+  .book .list li{display:flex;gap:13px;padding:13px 0;border-top:1px solid rgba(255,255,255,.12);font-size:15.5px;color:#d3dae2}
+  .book .list li:last-child{border-bottom:1px solid rgba(255,255,255,.12)}
+  .book .list svg{flex:0 0 18px;margin-top:3px}
+
+  .form{background:#fff;border-radius:6px;padding:34px 32px;color:var(--ink);box-shadow:0 22px 50px rgba(0,0,0,.28)}
+  .form h3{font-size:21px;margin-bottom:4px}
+  .form .hint{color:var(--muted);font-size:14.5px;margin:0 0 22px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  label{display:block;font-family:"Poppins",Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#6a7480;margin:0 0 7px}
+  .fld{margin-bottom:16px}
+  input,select,textarea{
+    width:100%;font-family:"Lato",Arial,sans-serif;font-size:15.5px;color:var(--ink);
+    padding:12px 13px;border:1px solid #d6dbe1;border-radius:3px;background:#fff
+  }
+  textarea{min-height:88px;resize:vertical}
+  .form .btn{width:100%;justify-content:center;margin-top:6px}
+  .form .fine{font-size:12.5px;color:#8a949f;margin:14px 0 0;text-align:center;display:flex;gap:7px;justify-content:center;align-items:center}
+  .upload{
+    display:flex;align-items:center;gap:10px;padding:14px 13px;border:1px dashed #c8cfd7;border-radius:3px;
+    background:#fafbfc;color:#8a949f;font-size:14.5px;cursor:pointer
+  }
+  .urgent-callout{
+    display:flex;gap:12px;align-items:flex-start;margin-top:26px;padding:16px 18px;border-radius:4px;
+    background:rgba(255,106,19,.12);border:1px solid rgba(255,138,66,.35);font-size:14.5px;color:#e4dad2;line-height:1.55
+  }
+  .urgent-callout strong{color:#fff}
+  .urgent-callout svg{flex:0 0 19px;margin-top:2px}
+
+  /* ---------- CTA band ---------- */
+  .band{background:var(--spark);color:#fff;padding:58px 0}
+  .band .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+  .band h2{font-size:clamp(25px,3vw,34px)}
+  .band p{margin:9px 0 0;font-size:17px;color:rgba(255,255,255,.9)}
+
+  footer{background:var(--ink);color:#8e99a6;padding:62px 0 28px;font-size:15px}
+  .fcols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:34px}
+  footer h5{font-family:"Poppins",Arial,sans-serif;color:#fff;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 16px;font-weight:600}
+  footer ul{list-style:none;padding:0;margin:0}
+  footer li{margin-bottom:9px}
+  footer a{color:#8e99a6;text-decoration:none}
+  footer a:hover{color:#fff}
+  .fbrand .nm{font-family:"Poppins",Arial,sans-serif;color:#fff;font-size:19px;font-weight:600}
+  .fbrand p{max-width:34ch;margin:12px 0 0;font-size:14.5px}
+  .fbot{margin-top:46px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13.5px}
+
+  .ph-note{
+    display:inline-block;font-family:"Poppins",Arial,sans-serif;font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:#9aa4b0;border:1px dashed #c6ccd4;padding:4px 9px;border-radius:3px;margin-left:10px;vertical-align:middle
+  }
+
+  @media (max-width:980px){
+    .grid-3,.steps,.gal,.book .cols,.fcols{grid-template-columns:1fr 1fr}
+    .step:after{display:none}
+  }
+  @media (max-width:980px){
+    .hero .trust{grid-template-columns:repeat(2,1fr);gap:22px 30px}
+    .trust .it{max-width:none}
+  }
+  @media (max-width:860px){
+    nav ul{display:none}
+    .nav .wrap{height:68px}
+    .nav .btn-primary{display:none}
+    .burger{display:grid}
+    .brand .nm{font-size:16.5px;white-space:nowrap}
+    .brand .sub{font-size:10px;letter-spacing:.11em}
+    .mark{width:36px;height:36px;flex:0 0 36px}
+  }
+  @media (max-width:720px){
+    body{font-size:16.5px}
+    .hero .wrap{padding:62px 22px 56px}
+    .hero p.lede{font-size:17.5px;margin:18px 0 28px}
+    .hero .cta .btn{width:100%;justify-content:center}
+    section{padding:64px 0}
+    .grid-3,.steps,.gal,.book .cols,.fcols,.row{grid-template-columns:1fr}
+    .book .cols{gap:36px}
+    .form{padding:26px 22px}
+    .topbar .wrap{height:auto;padding:9px 22px;font-size:12.5px;justify-content:center}
+    .topbar .wrap > div:first-child{display:none}
+    .telnote{display:none}
+    .paths{grid-template-columns:1fr;gap:14px}
+    .path{max-width:none;width:100%}
+    .path .btn{width:100%;justify-content:center}
+    .burger{display:grid}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div>Mobile service across <strong>Central &amp; Southern Alberta</strong></div>
+    <div class="pill">Broken down? Call us — <strong class="telnum">(403) 000-0000</strong> <span class="telnote">your number</span></div>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <span class="mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="#ff6a13"/></svg>
+      </span>
+      <span>
+        <span class="nm">Spark Metal Works</span><br>
+        <span class="sub">Mobile Welding · Alberta</span>
+      </span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#book">Start a Project</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary" href="#book">Start a Project</a>
+    <button class="burger" aria-label="Menu">
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="#11161c" stroke-width="2"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="photo"></div>
+  <div class="scrim"></div>
+  <span class="photonote">Your on-site welding photo goes here</span>
+  <div class="wrap">
+    <p class="eyebrow on-dark">Mobile Welding &amp; Custom Fabrication</p>
+    <h1>We bring the <em>shop</em> to your farm, site, or yard.</h1>
+    <p class="lede">Mobile welding and fabrication across Alberta. Broken equipment doesn't move — so we come to it, fully rigged and ready to cut, weld, and get you running again.</p>
+
+    <div class="paths">
+      <div class="path urgent">
+        <p class="plabel">Equipment down? Don't fill in a form.</p>
+        <a class="btn btn-primary tel" href="tel:">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M3.5 2.5h3.2l1.5 3.8-2 1.4a12 12 0 0 0 5.6 5.6l1.4-2 3.8 1.5v3.2a1.5 1.5 0 0 1-1.6 1.5C7.9 17 2.9 12 2 4.1A1.5 1.5 0 0 1 3.5 2.5Z" fill="#fff"/></svg>
+          Call (403) 000-0000
+        </a>
+        <p class="pnote">Fastest way to get a repair truck rolling — day, night or weekend.</p>
+      </div>
+      <div class="path">
+        <p class="plabel">Planning something custom built?</p>
+        <a class="btn btn-ghost" href="#book">Start Your Project
+          <svg width="15" height="12" viewBox="0 0 15 12" fill="none"><path d="M9 1l5 5-5 5M14 6H0" stroke="#fff" stroke-width="1.8"/></svg>
+        </a>
+        <p class="pnote">Send drawings and dimensions, pick a site-measure date, get a quote back.</p>
+      </div>
+    </div>
+    <div class="trust">
+      <div class="it">
+        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#ff8a42" stroke-width="1.6"/><path d="M6 10.5l2.6 2.6L14 7.7" stroke="#ff8a42" stroke-width="1.8"/></svg>
+        <span>Fully insured &amp; WCB covered</span>
+      </div>
+      <div class="it">
+        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#ff8a42" stroke-width="1.6"/><path d="M10 5v5.4l3.4 2" stroke="#ff8a42" stroke-width="1.8"/></svg>
+        <span>Same-week bookings, most areas</span>
+      </div>
+      <div class="it">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M10 1.6l2.5 5.2 5.7.8-4.1 4 1 5.6-5.1-2.7-5.1 2.7 1-5.6-4.1-4 5.7-.8L10 1.6Z" stroke="#ff8a42" stroke-width="1.5"/></svg>
+        <span>Red Seal–level workmanship</span>
+      </div>
+      <div class="it">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M3 15V8l7-5 7 5v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z" stroke="#ff8a42" stroke-width="1.6"/></svg>
+        <span>Farms · job sites · residential</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div><div class="n">15+</div><div class="l">Years on the tools</div></div>
+    <div><div class="n">400+</div><div class="l">Call-outs completed</div></div>
+    <div><div class="n">250 km</div><div class="l">Standard service radius</div></div>
+    <div><div class="n">7 days</div><div class="l">Availability incl. weekends</div></div>
+    <div><div class="n">Mobile</div><div class="l">Rig, generator, torch on board</div></div>
+  </div>
+  <div class="wrap" style="margin-top:14px">
+    <span class="photonote" style="position:static;display:inline-block">Sample figures — your real numbers go here</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What We Do</p>
+      <h2>Two kinds of job, two ways to reach us.</h2>
+      <p>Repairs are urgent, so they go straight to the phone. Custom builds need drawings, measurements and a date — those start online.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M2 17h20M5 17v-3h6l3-4h5l2 3v4" stroke="#ff6a13" stroke-width="1.7"/><circle cx="8" cy="19.5" r="1.8" stroke="#ff6a13" stroke-width="1.5"/><circle cx="18" cy="19.5" r="1.8" stroke="#ff6a13" stroke-width="1.5"/></svg></div>
+        <span class="route route-call">Call us</span>
+        <h3>Trailer &amp; Truck Repair</h3>
+        <p>Frames, decks, hitches, ramps and cross-members brought back to spec and road-safe.</p>
+        <ul><li>Cracked frames &amp; tongues</li><li>Deck and ramp rebuilds</li><li>Hitch and receiver work</li></ul>
+        <a class="more" href="tel:">Call (403) 000-0000 →</a>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 20V9l8-5 8 5v11" stroke="#ff6a13" stroke-width="1.7"/><path d="M9 20v-6h6v6M3 20h18" stroke="#ff6a13" stroke-width="1.7"/></svg></div>
+        <span class="route route-call">Call us</span>
+        <h3>Farm Equipment Repair</h3>
+        <p>Seeders, augers, loader buckets, cattle gates and headers repaired in the yard — in season, when it matters.</p>
+        <ul><li>Bucket &amp; blade rebuilds</li><li>Auger and hopper repair</li><li>Gates, panels, feeders</li></ul>
+        <a class="more" href="tel:">Call (403) 000-0000 →</a>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 21l6-6M14 3l7 7-4 1-4-4 1-4Z" stroke="#ff6a13" stroke-width="1.7"/><path d="M9 15l5-5" stroke="#ff6a13" stroke-width="1.7"/></svg></div>
+        <span class="route route-book">Book online</span>
+        <h3>Custom Fabrication</h3>
+        <p>Built to your measurements: racks, brackets, guards, stairs, railings and one-off shop solutions.</p>
+        <ul><li>Railings &amp; stair stringers</li><li>Racks, frames, brackets</li><li>Guards and skid plates</li></ul>
+        <a class="more" href="#book">Start your project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Custom Fabrication Process</p>
+      <h2>From sketch to installed, in four steps.</h2>
+      <p>Fabrication isn't a same-day call-out — it needs measurements, material and a plan. The online form collects all of that up front so the first conversation is already a productive one.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h4>Tell us what you need built</h4><p>Project type, material, rough dimensions, and a sketch or photo if you have one.</p></div>
+      <div class="step"><h4>Pick a site-measure date</h4><p>Choose a preferred date and a backup. We come out, measure and talk it through.</p></div>
+      <div class="step"><h4>Get your quote</h4><p>A written price with materials and a build timeline — no surprises later.</p></div>
+      <div class="step"><h4>We build and install</h4><p>Fabricated and fitted on site. Repairs, meanwhile, stay one phone call away.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Our Work</p>
+      <h2>Recent jobs across Alberta <span class="ph-note">placeholder tiles — your photos drop in here</span></h2>
+      <p>Filtered by category, and updated from the dashboard in a few clicks — no coding, no developer.</p>
+    </div>
+    <div class="filters">
+      <button class="on">All Work</button>
+      <button>Trailer Repairs</button>
+      <button>Farm Equipment</button>
+      <button>Custom Fabrication</button>
+      <button>On-Site Structural</button>
+    </div>
+    <div class="gal">
+      <div class="shot g1"><span class="ph">Trailer frame weld</span><span class="tag">Trailer Repairs</span></div>
+      <div class="shot g2"><span class="ph">Loader bucket rebuild</span><span class="tag">Farm Equipment</span></div>
+      <div class="shot g3"><span class="ph">Stainless railing</span><span class="tag">Custom Fabrication</span></div>
+      <div class="shot g4"><span class="ph">Auger flighting repair</span><span class="tag">Farm Equipment</span></div>
+      <div class="shot g5"><span class="ph">Deck &amp; ramp replacement</span><span class="tag">Trailer Repairs</span></div>
+      <div class="shot g6"><span class="ph">Shop stair stringers</span><span class="tag">Custom Fabrication</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <p class="eyebrow on-dark">Custom Fabrication Booking</p>
+        <h2>Start a custom build.</h2>
+        <p class="lede">For fabrication work only. It lands in your business inbox and in the booking dashboard at the same time, with the drawings attached — nothing gets lost.</p>
+        <ul class="list">
+          <li><svg viewBox="0 0 20 20" fill="none"><path d="M6 10.5l2.6 2.6L14 7.7" stroke="#ff8a42" stroke-width="1.9"/><circle cx="10" cy="10" r="9" stroke="#ff8a42" stroke-width="1.5"/></svg><span>Project type, material and dimensions captured up front</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none"><path d="M6 10.5l2.6 2.6L14 7.7" stroke="#ff8a42" stroke-width="1.9"/><circle cx="10" cy="10" r="9" stroke="#ff8a42" stroke-width="1.5"/></svg><span>Drawing, sketch or photo upload so you can scope before you drive out</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none"><path d="M6 10.5l2.6 2.6L14 7.7" stroke="#ff8a42" stroke-width="1.9"/><circle cx="10" cy="10" r="9" stroke="#ff8a42" stroke-width="1.5"/></svg><span>Spam-protected — no bot junk in your inbox</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none"><path d="M6 10.5l2.6 2.6L14 7.7" stroke="#ff8a42" stroke-width="1.9"/><circle cx="10" cy="10" r="9" stroke="#ff8a42" stroke-width="1.5"/></svg><span>Confirm, reschedule or decline the site measure from a simple calendar</span></li>
+        </ul>
+        <div class="urgent-callout">
+          <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M3.5 2.5h3.2l1.5 3.8-2 1.4a12 12 0 0 0 5.6 5.6l1.4-2 3.8 1.5v3.2a1.5 1.5 0 0 1-1.6 1.5C7.9 17 2.9 12 2 4.1A1.5 1.5 0 0 1 3.5 2.5Z" fill="#ff8a42"/></svg>
+          <span><strong>Need a repair instead?</strong> Don't use this form — call <strong class="telnum">(403) 000-0000</strong> and we'll get a truck to you.</span>
+        </div>
+      </div>
+
+      <div class="form">
+        <h3>Request a Fabrication Quote</h3>
+        <p class="hint">Custom builds only. Average response time: same business day.</p>
+        <div class="row">
+          <div class="fld"><label>Your name</label><input placeholder="John Olsen"></div>
+          <div class="fld"><label>Phone</label><input placeholder="(403) 000-0000"></div>
+        </div>
+        <div class="fld"><label>Email</label><input placeholder="you@email.com"></div>
+        <div class="fld"><label>What are we building?</label>
+          <select><option>Railings, stairs or walkways</option><option>Gates, panels &amp; livestock equipment</option><option>Racks, frames &amp; brackets</option><option>Guards, skid plates &amp; attachments</option><option>Structural steel on site</option><option>Something else — described below</option></select>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Material</label><select><option>Mild steel</option><option>Aluminium</option><option>Stainless</option><option>Not sure — advise me</option></select></div>
+          <div class="fld"><label>Approx. size</label><input placeholder="e.g. 24 ft of railing"></div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Preferred site measure</label><input placeholder="dd / mm / yyyy"></div>
+          <div class="fld"><label>Backup date</label><input placeholder="dd / mm / yyyy"></div>
+        </div>
+        <div class="fld"><label>Job site location</label><input placeholder="Town / RR &amp; Township Road"></div>
+        <div class="fld"><label>Project details</label><textarea placeholder="What do you need built, and what is it for? Mounting surface, finish, and anything it has to clear."></textarea></div>
+        <div class="fld"><label>Drawing, sketch or photo</label>
+          <div class="upload">
+            <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 14V4m0 0L6 8m4-4 4 4M3 15v2h14v-2" stroke="#8a949f" stroke-width="1.6"/></svg>
+            Attach a file — PDF, JPG or PNG
+          </div>
+        </div>
+        <a class="btn btn-primary" href="#">Send Project Request</a>
+        <p class="fine">
+          <svg width="13" height="15" viewBox="0 0 14 16" fill="none"><path d="M7 1l5.5 2v5c0 3.6-2.4 6-5.5 7C3.9 14 1.5 11.6 1.5 8V3L7 1Z" stroke="#8a949f" stroke-width="1.3"/></svg>
+          Spam protected · we reply by email, never share your details
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="sec-head" style="max-width:720px">
+      <p class="eyebrow">About Us</p>
+      <h2>A welder who answers the phone, shows up, and finishes the job.</h2>
+      <p>Spark Metal Works Ltd. is an Alberta mobile welding outfit built on a simple idea: downtime costs more than the repair. We carry the rig, the generator and the consumables so one visit is usually all it takes.</p>
+      <p style="margin-top:14px"><span class="ph-note" style="margin-left:0">We'll replace this with your own story, certifications and service area</span></p>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <div class="wrap">
+    <div>
+      <h2>Got something in mind that needs building?</h2>
+      <p>Send the drawings and we'll come measure. Broken down instead? Call <strong>(403) 000-0000</strong>.</p>
+    </div>
+    <a class="btn btn-dark" href="#book">Start Your Project
+      <svg width="15" height="12" viewBox="0 0 15 12" fill="none"><path d="M9 1l5 5-5 5M14 6H0" stroke="#fff" stroke-width="1.8"/></svg>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div class="fbrand">
+        <span class="nm">Spark Metal Works Ltd.</span>
+        <p>Mobile welding, metal repair and custom fabrication for farms, job sites and residential properties across Alberta.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul><li><a href="#">Trailer &amp; truck repair</a></li><li><a href="#">Farm equipment fixes</a></li><li><a href="#">Custom fabrication</a></li><li><a href="#">On-site structural</a></li></ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul><li><a href="#">About us</a></li><li><a href="#">Our work</a></li><li><a href="#">Book a job</a></li><li><a href="#">Service area</a></li></ul>
+      </div>
+      <div>
+        <h5>Get In Touch</h5>
+        <ul><li>Mon–Sat, call-outs 7 days</li><li>Central &amp; Southern Alberta</li><li><a href="#book">Online booking form</a></li></ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <div>© 2026 Spark Metal Works Ltd. All rights reserved.</div>
+      <div>Design concept — copy and contact details to be supplied by client</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
